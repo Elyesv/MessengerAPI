@@ -41,3 +41,10 @@ exports.createPost = (req,res)=>{
 //         .then(() => res.status(201).json({message : 'ok'}))
 //         .catch(error=> res.status(400).json({error}))
 // })
+
+exports.getPostAutor = (req, res) => {
+    console.log(req.params.autor)
+    Post.find({autor:(req.params.autor).charAt(0).toUpperCase() + (req.params.autor).slice(1)})
+        .then(post => res.status(200).json(post))
+        .catch(error => res.status(404).json({error}))
+}
