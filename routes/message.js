@@ -4,9 +4,9 @@ const postController = require('../controllers/controllers')
 
 console.log('test route')
 
-router.get('/test', postController.getAllPost)
-router.get('/test/:autor', postController.getPostAutor)
-router.post('/test', postController.createPost)
+router.get('/', postController.getAllPost)
+router.get('/:autor', postController.getPostAutor)
+router.post('/', postController.createPost)
 
 
 module.exports = router
