@@ -1,4 +1,4 @@
-const Post = require('../models/post')
+const Post = require('../models/message')
 const express = require('express')
 const router = express.Router()
 
@@ -13,7 +13,7 @@ exports.createPost = (req,res)=>{
     console.log("post test")
     console.log('MESSAGE WAS SEND')
     const postObject = JSON.parse(JSON.stringify(req.body))
-    delete postObject._id
+    delete postObject.userId
     const p = new Post({
         ...postObject
     })

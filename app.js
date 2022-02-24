@@ -1,7 +1,8 @@
 const express = require('express')
 const mongoose = require('mongoose');
 const app = express()
-const route = require('./routes/message')
+const routeMessage = require('./routes/message')
+const routeUser = require('./routes/user')
 
 mongoose.connect('mongodb+srv://root:root@cluster0.oxo7s.mongodb.net/projectLundi?retryWrites=true&w=majority', 
 {
@@ -23,6 +24,7 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-app.use('/message', route)
+app.use('/message', routeMessage)
+app.use('/user', routeUser)
 
 module.exports = app
