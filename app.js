@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express()
 const routeMessage = require('./routes/message')
 const routeUser = require('./routes/user')
+const cors = require('cors')
 
 mongoose.connect('mongodb+srv://root:root@cluster0.oxo7s.mongodb.net/projectLundi?retryWrites=true&w=majority', 
 {
@@ -12,12 +13,7 @@ mongoose.connect('mongodb+srv://root:root@cluster0.oxo7s.mongodb.net/projectLund
 .then(()=> console.log("db valid"))
 .catch(() => console.log("db error"))
 
-app.use((req,res,next)=>{
-    res.setHeader('Access-Control-Allow-Origin', '*')
-    res.setHeader('Access-Control-Allow-Headers', 'Origin,X-Requested-With,Content,Accept,Content-type,Authorization')
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE')
-    next()
-})
+app.use(cors())
 
 app.use(express.json())
 app.use(express.urlencoded({
