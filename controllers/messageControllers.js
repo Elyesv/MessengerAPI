@@ -29,23 +29,20 @@ exports.getPostAutor = (req, res) => {
         .catch(error => res.status(404).json({error}))
 }
 
-// exports.modifyPostId = (req, res) => {
-//     console.log(req.param)
-//     Post.updateOne({_id: req.param.id}), {message: "Florian il boit de l'eau de mer"}
-//         .then(() => res.status(201).json({message : 'ok'}))
-//         .catch(error=> res.status(400).json({error}))
-// }
 
-exports.modifyPostId = (req, res) => {
-    console.log('Modify post')
-    Post.updateOne({_id: req.params.id}, {autor: req.params.autor})
-        .then(() => res.status(200).json({message: 'ok'}))
-        .catch(error => res.status(400).json({error}))
+exports.modifyPost = (req, res, next) =>{
+    console.log('Modifying post')
+    Post.updateOne(
+        {_id: req.body.msgId},
+        {message: req.body.message}
+    )
+        .then(post => res.status(200).json({message : "Post modified"}))
+        .catch(error =>res.status(400).json({error}))
 }
 
 exports.deletePostId = (req, res) => {
     console.log('Delete post')
-    Post.deleteOne({_id: req.params.id})
-        .then(post => res.status(200).json(post))
+    Post.deleteOne({_id: req.body.msgId})
+        .then(post => res.status(200).json({message : "Post delete"}))
         .catch(error =>res.status(400).json({error}))
 }

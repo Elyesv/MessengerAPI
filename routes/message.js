@@ -8,8 +8,8 @@ console.log('message route')
 router.get('/', auth, postController.getAllPost)
 router.get('/single/:autor', auth, postController.getPostAutor)
 router.post('/', auth, postController.createPost)
-router.get('/modify/:id/:autor', auth, postController.modifyPostId)
-router.get('/delete/:id', auth, postController.deletePostId)
+router.post('/modify', auth, postController.modifyPost)
+router.delete('/delete', auth, postController.deletePostId)
 
 
 module.exports = router
