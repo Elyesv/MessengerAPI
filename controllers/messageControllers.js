@@ -18,7 +18,10 @@ exports.createPost = (req,res)=>{
         ...postObject
     })
     p.save()
-        .then(() => res.status(201).json({message : 'ok'}))
+        .then(() => 
+        res.status(201).json({message : 'ok'})
+        
+        )
         .catch(error=> res.status(400).json({error}))
 }
 
@@ -34,7 +37,8 @@ exports.modifyPost = (req, res, next) =>{
     console.log('Modifying post')
     Post.updateOne(
         {_id: req.body.msgId},
-        {message: req.body.message}
+        {message: req.body.message},
+        {urlImage: req.body.urlImage}
     )
         .then(post => res.status(200).json({message : "Post modified"}))
         .catch(error =>res.status(400).json({error}))
